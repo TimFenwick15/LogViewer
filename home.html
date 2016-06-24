@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset = 'utf-8'/>
+  <title>Log Viewer</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <link rel='stylesheet' type='text/css' href='style.css'></link>
+</head>
+<body>
+  <script src='script.js'></script>
+  <div ng-app='logGUIApp' ng-controller='logGUIController'>
+    <div id='leftBar' ng-model='leftText'>
+	  <div id='meta'>
+	    Log Viewer
+	  </div>
+	  <div>
+	    Automatic refresh
+		<select ng-model='refresh'>
+		  <option value='yes'>Yes</option>
+		  <option value='no'>No</option>
+		</select>
+	  </div>
+	  <br>
+	  <table>
+        <tr ng-repeat='x in leftText track by $index' ng-class="selected == x ? 'active' : ''">
+          <td><a href ng-click='getLog(x)'>{{x}}</a></td>
+        </tr>
+	  </table>
+    </div>
+    <div id='rightBar' ng-model='rightText'>
+	  <table>
+        <tr ng-repeat='y in rightText track by $index'>
+          <td>{{y}}</td>
+        </tr>
+      </table>
+	</div>
+  </div>
+</body>
+</html>
